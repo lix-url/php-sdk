@@ -1,0 +1,39 @@
+{
+  "name": "lix-url/php-sdk",
+  "description": "Official PHP SDK for the Lix.li API.",
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "lix",
+    "url-shortener",
+    "links-management",
+    "analytics",
+    "api",
+    "sdk"
+  ],
+  "homepage": "https://lix.li",
+  "support": {
+    "docs": "https://lix.li/api",
+    "source": "https://github.com/lix-url/php-sdk",
+    "issues": "https://github.com/lix-url/php-sdk/issues"
+  },
+  "require": {
+    "php": "^8.2",
+    "guzzlehttp/guzzle": "^7.9"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^11.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Lix\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Lix\\Tests\\": "tests/"
+    }
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}
