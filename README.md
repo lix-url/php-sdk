@@ -189,6 +189,19 @@ try {
 * API Documentation: https://lix.li/api
 * OpenAPI Specification: https://github.com/lix-url/openapi
 
+## Other SDKs
+
+- Go SDK: https://github.com/lix-url/go-sdk
+- JavaScript SDK: https://github.com/lix-url/js-sdk
+- Python SDK: https://github.com/lix-url/python-sdk
+
+
+## Support
+
+Need help with the API or SDK?
+
+- Support Center: https://lix.li/support
+
 ## License
 
 MIT
