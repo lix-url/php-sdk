@@ -1,4 +1,5 @@
 {
+  "version": "0.1.1",
   "name": "lix-url/php-sdk",
   "description": "Official PHP SDK for the Lix.li API.",
   "type": "library",
