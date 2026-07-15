@@ -5,9 +5,11 @@ namespace Lix\Http;
 
 use GuzzleHttp\Psr7\Request;
 use Lix\Exceptions\NotFoundException;
+use Lix\Exceptions\PlanLimitException;
 use Lix\Exceptions\RateLimitException;
 use Lix\Exceptions\ServerException;
 use Lix\Exceptions\UnauthorizedException;
+use Lix\Exceptions\UnprocessableEntity;
 use Lix\Exceptions\ValidationException;
 use Psr\Http\Client\ClientInterface;
 
@@ -47,6 +49,14 @@ final class ApiClient
                 throw new UnauthorizedException();
             case 404:
                 throw new NotFoundException();
+            case 422:
+                $errorName = $data['error'] ?? null;
+                if ($errorName === 'plan_limit_exceeded') {
+                    $e = new PlanLimitException($data['error_message'] ?? '');
+                    $e->setErrorData($data);
+                    throw $e;
+                }
+                throw new UnprocessableEntity($data['error_message'] ?? '');
             case 429:
                 throw new RateLimitException();
             case 500:
