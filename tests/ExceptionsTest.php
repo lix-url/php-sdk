@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Lix\Tests;
 
 use GuzzleHttp\Psr7\Response;
+use Lix\Exceptions\ConflictException;
 use Lix\Exceptions\NotFoundException;
 use Lix\Exceptions\PlanLimitException;
 use Lix\Exceptions\RateLimitException;
@@ -39,6 +40,20 @@ final class ExceptionsTest extends TestCase
         try {
             $client->groups()->create('test');
         } catch (UnprocessableEntity $e) {
+            $this->assertTrue(true);
+        }
+    }
+
+    public function testGroupCreateConflictErrors(): void
+    {
+        $mockHttpClient = self::getHttpClient();
+        $client         = self::initClient('lix_test_some_key1');
+
+        $mockHttpClient->addToResponseChain(new Response(409, [], '{"error":"alias_already_exists","parameter_errors":[],"error_message":"This alias is already in use. Please choose another one."}'));
+
+        try {
+            $client->groups()->create('test');
+        } catch (ConflictException $e) {
             $this->assertTrue(true);
         }
     }
